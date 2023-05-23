@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: reference-new.html 
+keywords: 'what"s new, new, features, release notes, enhancements' 
+summary: Cloud Volumes ONTAP 9.8 include diverse nuove funzionalità e miglioramenti. 
+---
+= Novità di Cloud Volumes ONTAP 9.8
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Volumes ONTAP 9.8 include diverse nuove funzionalità e miglioramenti.
+
+Ulteriori funzionalità e miglioramenti sono stati introdotti anche nelle ultime versioni di BlueXP. Vedere https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["Note di rilascio di BlueXP"^] per ulteriori informazioni.
+
+
+
+== Istanze c4, m4 e r4 non più supportate (28 ottobre 2022)
+
+In AWS, i tipi di istanze c4, m4 e r4 EC2 non sono più supportati con Cloud Volumes ONTAP. Se si dispone di un sistema in esecuzione su un tipo di istanza c4, m4 o r4, è necessario passare a un tipo di istanza nella famiglia di istanze c5, m5 o r5.
+
+link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-change-ec2-instance.html["Scopri come modificare il tipo di istanza EC2 per Cloud Volumes ONTAP"^].
+
+Fare riferimento a. link:https://mysupport.netapp.com/info/communications/ECMLP2880231.html["Supporto NetApp"^] per ulteriori informazioni sulla fine della disponibilità e sul supporto per questi tipi di istanze.
+
+
+
+== 9.8 GA (5 gennaio 2021)
+
+È ora disponibile la versione General Availability (GA) di Cloud Volumes ONTAP 9.8. La release GA include correzioni di bug. BlueXP richiederà di aggiornare i sistemi 9.8 RC1 e 9.7 esistenti a questa versione.
+
+
+
+== Modifiche introdotte con il connettore 3.9.2 (4 gennaio 2021)
+
+La versione 3.9.2 di BlueXP Connector include diversi miglioramenti per Cloud Volumes ONTAP, tra cui il supporto per gli outpost AWS, dischi più grandi in Google Cloud e molto altro ancora.
+
+Accedere alla https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["Note di rilascio di BlueXP"^] per ulteriori informazioni sulla versione 3.9.2.
+
+
+
+== E48s_v3 ora supportato con coppie ha (21 dicembre 2020)
+
+Il tipo di macchina virtuale E48s_v3 è ora supportato con le coppie Cloud Volumes ONTAP ha in Microsoft Azure.
+
+
+
+== Istanze EC2 supportate (11 dicembre 2020)
+
+A partire dalla release 9.8, i tipi di istanze c4, m4 e r4 EC2 non sono supportati dai nuovi sistemi Cloud Volumes ONTAP. Anche la modifica di un sistema 9.8 esistente in uno di questi tipi di istanze non è supportata.
+
+Se si dispone di un sistema Cloud Volumes ONTAP 9.7 in esecuzione su un tipo di istanza c4, m4 o r4, è comunque possibile eseguire l'aggiornamento alla versione 9.8.
+
+
+
+== 9.8 aggiornamento RC1 (12 novembre 2020)
+
+Simile ai sistemi a nodo singolo, BlueXP assegna ora un disco core alle nuove implementazioni a 9.8 coppie ha in AWS quando si utilizza un tipo di istanza C5, M5 o R5. Il disco principale espande la possibilità di passare da un tipo di istanza all'altro supportato, migliora la capacità del sistema di raccogliere i file principali in caso di problemi e offre la possibilità di supportare tipi di istanze più grandi in futuro.
+
+Il disco core è un SSD General Purpose (gp2) con 540 GiB.
+
+
+NOTE: Con l'aggiunta di questo disco core, un disco dati in meno è ora supportato sui sistemi che utilizzano questi tipi di istanze. link:reference-limits-aws.html["Scopri di più sui limiti di storage in AWS"].
+
+
+
+== 9.8 RC1 (8 novembre 2020)
+
+Cloud Volumes ONTAP 9.8 RC1 è ora disponibile in AWS, Azure e Google Cloud Platform. In Azure, 9.8 RC1 è attualmente disponibile solo per gli aggiornamenti.
+
+Oltre alle funzionalità introdotte con https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["ONTAP 9.8"^], Questa versione di Cloud Volumes ONTAP include quanto segue:
+
+* <<Coppie ad alta disponibilità in Google Cloud>>
+* <<Correzioni per gli eventi di scollegamento e manutenzione della NIC Azure>>
+* <<Elevata velocità di scrittura con coppie ha in AWS e Azure>>
+* <<Supporto per un massimo di 24 VM di storage in AWS>>
+* <<Disco core per sistemi a nodo singolo in AWS>>
+
+
+
+
+=== Coppie ad alta disponibilità in Google Cloud
+
+Le coppie ad alta disponibilità (ha) di Cloud Volumes ONTAP sono ora disponibili in Google Cloud.
+
+Una coppia ha offre affidabilità Enterprise e operazioni continue in caso di guasti nel tuo ambiente cloud. Simile a Cloud Volumes ONTAP in AWS, una coppia ha in Google Cloud include due nodi Cloud Volumes ONTAP i cui dati vengono sottoposti a mirroring sincrono tra loro e un'istanza di mediatore che fornisce un canale di comunicazione per agevolare il takeover e il giveback dello storage.
+
+Visualizza link:reference-configs-gcp.html["configurazioni supportate"] e. link:reference-limits-gcp.html["limiti di storage"].
+
+https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/concept-ha-google-cloud.html["Scopri di più sulle coppie ha in Google Cloud"^].
+
+
+
+=== Correzioni per gli eventi di scollegamento e manutenzione della NIC Azure
+
+Questa release offre diversi miglioramenti per il modo in cui Cloud Volumes ONTAP gestisce gli eventi di blocco di Azure, gli eventi di scollegamento della NIC di Azure e altre attività di manutenzione di Azure (ad esempio, la revoca della funzione virtuale). Cloud Volumes ONTAP è più tollerante agli errori in questa release e gestirà gli eventi Azure con maggiore grazia, con una minore probabilità di interruzione del servizio o di degrado del cluster.
+
+
+
+=== Elevata velocità di scrittura con coppie ha in AWS e Azure
+
+Cloud Volumes ONTAP ora supporta un'elevata velocità di scrittura con coppie ha in AWS e Azure quando si utilizza un'istanza specifica o un tipo di macchina virtuale. L'elevata velocità di scrittura è una buona scelta se per il carico di lavoro sono richieste prestazioni di scrittura rapide e se si può resistere al rischio di perdita di dati in caso di un'interruzione non pianificata del sistema.
+
+Prima di scegliere una velocità di scrittura, è necessario comprendere le differenze tra le impostazioni normale e alta e i rischi e le raccomandazioni quando si utilizza un'elevata velocità di scrittura.
+
+https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/concept-write-speed.html["Scopri di più"^].
+
+
+
+=== Supporto per un massimo di 24 VM di storage in AWS
+
+Cloud Volumes ONTAP supporta fino a 24 storage VM in AWS quando si utilizza un tipo di istanza C5, M5 o R5 e si porta la propria licenza. Di queste 24 VM di storage, è possibile configurare fino a 12 per il disaster recovery (DR).
+
+Il limite può essere inferiore, a seconda del tipo di istanza EC2 utilizzato.
+
+È necessaria una licenza add-on per ogni ulteriore VM di storage _data-serving_ oltre la prima VM di storage fornita con Cloud Volumes ONTAP per impostazione predefinita. Contattare il proprio account team per ottenere una licenza add-on SVM.
+
+Le VM di storage configurate per il disaster recovery (DR) non richiedono una licenza add-on (sono gratuite), ma contano rispetto al limite delle VM di storage.
+
+link:reference-limits-aws.html["Scopri di più sui limiti delle VM di storage"].
+
+https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-managing-svms-aws.html["Scopri come creare macchine virtuali storage per il data-service per Cloud Volumes ONTAP in AWS"^].
+
+
+
+=== Disco core per sistemi a nodo singolo in AWS
+
+BlueXP assegna ora un disco core alle nuove implementazioni a nodo singolo 9.8 in AWS quando si utilizza un tipo di istanza C5, M5 o R5. Il disco principale espande la possibilità di passare da un tipo di istanza all'altro supportato, migliora la capacità del sistema di raccogliere i file principali in caso di problemi e offre la possibilità di supportare tipi di istanze più grandi in futuro.
+
+Il disco core è un SSD General Purpose (gp2) con 540 GiB.
+
+
+NOTE: Con l'aggiunta di questo disco core, un disco dati in meno è ora supportato sui sistemi a nodo singolo che utilizzano questi tipi di istanze. link:reference-limits-aws.html["Scopri di più sui limiti di storage in AWS"].
+
+
+
+== Versione richiesta di BlueXP Connector
+
+BlueXP Connector deve eseguire la versione 3.9.0 o successiva per implementare nuovi sistemi Cloud Volumes ONTAP 9.8 e aggiornare i sistemi esistenti alla versione 9.8.
+
+
+
+== Note sull'aggiornamento
+
+* Gli aggiornamenti di Cloud Volumes ONTAP devono essere completati da BlueXP. Non aggiornare Cloud Volumes ONTAP utilizzando Gestione di sistema o l'interfaccia CLI. In questo modo si può influire sulla stabilità del sistema.
+* È possibile eseguire l'aggiornamento a Cloud Volumes ONTAP 9.8 dalla versione 9.7. BlueXP richiederà di aggiornare i sistemi Cloud Volumes ONTAP 9.7 esistenti alla versione 9.8.
++
+http://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-updating-ontap-cloud.html["Scopri come eseguire l'aggiornamento quando BlueXP ti notifica"^].
+
+* L'aggiornamento di un sistema a nodo singolo porta il sistema offline per un massimo di 25 minuti, durante i quali l'i/o viene interrotto.
+* L'aggiornamento di una coppia ha è senza interruzioni e l'i/o è ininterrotto. Durante questo processo di aggiornamento senza interruzioni, ogni nodo viene aggiornato in tandem per continuare a fornire i/o ai client.
+
